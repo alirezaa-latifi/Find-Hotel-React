@@ -4,8 +4,9 @@ import AddRoom from "./AddRoom";
 import Search from "./Search";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { RoomType } from "../customTypes";
 
-const deepCopyRooms = (rooms) => {
+const deepCopyRooms = (rooms: RoomType[]): RoomType[] => {
     return rooms.map((room) => ({
         adults: room.adults,
         children: room.children,
@@ -14,7 +15,7 @@ const deepCopyRooms = (rooms) => {
 };
 
 function App() {
-    const [rooms, setRooms] = useState([
+    const [rooms, setRooms] = useState<RoomType[]>([
         { adults: 1, children: 0, childrenAges: [] },
     ]);
 
@@ -28,7 +29,7 @@ function App() {
     };
 
     // Update Room : Adults
-    const onUpdateAdults = (roomIdx, action) => {
+    const onUpdateAdults = (roomIdx: number, action: "Add" | "Minus") => {
         const currentRoom = rooms[roomIdx];
         const newRooms = deepCopyRooms(rooms);
 
@@ -46,7 +47,7 @@ function App() {
     };
 
     // Update Room : Children
-    const onUpdateChildren = (roomIdx, action) => {
+    const onUpdateChildren = (roomIdx: number, action: "Add" | "Minus") => {
         const currentRoom = rooms[roomIdx];
         const newRooms = deepCopyRooms(rooms);
 
@@ -67,28 +68,31 @@ function App() {
                 roomIdx
             ].childrenAges.slice(0, -1);
         }
+
         setRooms(newRooms);
     };
 
     // Update Room : Children Ages
-    const onUpdateAges = (roomIdx, newAge, ageIdx) => {
+    const onUpdateAges = (roomIdx: number, newAge: number, ageIdx: number) => {
         const newRooms = deepCopyRooms(rooms);
         newRooms[roomIdx].childrenAges[ageIdx] = newAge;
         setRooms(newRooms);
     };
 
     // Remove Age
-    const onRemoveAge = (roomIdx, ageIdx) => {
+    const onRemoveAge = (roomIdx: number, ageIdx: number) => {
         const newRooms = deepCopyRooms(rooms);
+
         newRooms[roomIdx].children--;
         newRooms[roomIdx].childrenAges = newRooms[roomIdx].childrenAges.filter(
             (_, idx) => idx !== ageIdx
         );
+
         setRooms(newRooms);
     };
 
     // Remove Room
-    const onRemoveRoom = (toRemoveRoomIdx) => {
+    const onRemoveRoom = (toRemoveRoomIdx: number) => {
         setRooms(rooms.filter((_, idx) => idx !== toRemoveRoomIdx));
     };
 

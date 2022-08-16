@@ -1,6 +1,20 @@
 import { v4 as uuidv4 } from "uuid";
 
-const Age = ({ roomIdx, ageIdx, onUpdateAges, ageValue, onRemoveAge }) => {
+interface AgePropsType {
+    roomIdx: number;
+    ageIdx: number;
+    onUpdateAges: (roomIdx: number, newAge: number, ageIdx: number) => void;
+    ageValue: number;
+    onRemoveAge: (roomIdx: number, ageIdx: number) => void;
+}
+
+const Age = ({
+    roomIdx,
+    ageIdx,
+    onUpdateAges,
+    ageValue,
+    onRemoveAge,
+}: AgePropsType) => {
     const ageOptions = ((maxAge) => {
         const arr = [];
         for (let i = 1; i <= maxAge; i++) {

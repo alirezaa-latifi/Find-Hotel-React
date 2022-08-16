@@ -1,6 +1,8 @@
-const Search = ({ rooms }) => {
+import { RoomType } from "../customTypes";
+
+const Search = ({ rooms }: { rooms: RoomType[] }) => {
     // Calc Guest Count
-    const calcGuestCount = (rooms) => {
+    const calcGuestCount = (rooms: RoomType[]): number => {
         return rooms.reduce(
             (sum, currRoomObj) =>
                 sum + currRoomObj.adults + currRoomObj.children,
@@ -9,14 +11,14 @@ const Search = ({ rooms }) => {
     };
 
     // isAgesEntered
-    const isAgesEntered = (rooms) => {
+    const isAgesEntered = (rooms: RoomType[]): boolean => {
         return !rooms.some((room) =>
             room.childrenAges.some((age) => age === 0)
         );
     };
 
     // Generate Output Str
-    const generateOutputStr = (rooms) => {
+    const generateOutputStr = (rooms: RoomType[]) => {
         const output = rooms.reduce(
             (output, { adults, childrenAges }, roomIdx) => {
                 let roomStr = "";

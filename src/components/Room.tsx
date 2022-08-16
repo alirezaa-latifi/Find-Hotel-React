@@ -1,6 +1,17 @@
 import Age from "./Age";
 import { v4 as uuidv4 } from "uuid";
 import Counter from "./Counter";
+import { RoomType } from "../customTypes";
+
+interface RoomPropsType {
+    idx: number;
+    room: RoomType;
+    onUpdateAdults: (roomIdx: number, action: "Add" | "Minus") => void;
+    onUpdateChildren: (roomIdx: number, action: "Add" | "Minus") => void;
+    onUpdateAges: (roomIdx: number, newAge: number, ageIdx: number) => void;
+    onRemoveAge: (roomIdx: number, ageIdx: number) => void;
+    onRemoveRoom: (toRemoveRoomIdx: number) => void;
+}
 
 const Room = ({
     idx,
@@ -10,12 +21,7 @@ const Room = ({
     onUpdateAges,
     onRemoveAge,
     onRemoveRoom,
-}) => {
-    const labels = {
-        adults: "Adults",
-        children: "Children",
-    };
-
+}: RoomPropsType) => {
     return (
         <div className="room">
             <div className="room__header">
@@ -31,14 +37,14 @@ const Room = ({
             </div>
             <Counter
                 countValue={room.adults}
-                label={labels.adults}
+                label={"Adults"}
                 onUpdateCounter={onUpdateAdults}
                 roomIdx={idx}
             />
             <Counter
                 countValue={room.children}
                 onUpdateCounter={onUpdateChildren}
-                label={labels.children}
+                label={"Children"}
                 roomIdx={idx}
             />
             {room.children > 0 &&

@@ -1,4 +1,16 @@
-const Counter = ({ onUpdateCounter, label, roomIdx, countValue }) => {
+interface CounterPropsType {
+    onUpdateCounter: (roomIdx: number, action: "Add" | "Minus") => void;
+    label: "Adults" | "Children";
+    roomIdx: number;
+    countValue: number;
+}
+
+const Counter = ({
+    onUpdateCounter,
+    label,
+    roomIdx,
+    countValue,
+}: CounterPropsType) => {
     return (
         <div className="counter d-flex">
             <span className="counter__label">{label}</span>

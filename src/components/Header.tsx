@@ -1,4 +1,4 @@
-const Header = ({ onResetRooms }) => {
+const Header = ({ onResetRooms }: { onResetRooms: () => void }) => {
     return (
         <div className="header">
             <div className="container pos-rel d-flex">
