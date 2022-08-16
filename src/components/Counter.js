@@ -1,32 +1,19 @@
-import { useEffect, useRef, useState } from "react";
-
-const Counter = ({ countValue, onCounterUpdate, label }) => {
-    const [count, setCount] = useState(countValue);
-
-    const handleAdd = () => {
-        setCount(count + 1);
-    };
-    const handleMinus = () => {
-        count > 0 && setCount(count - 1);
-    };
-
-    useEffect(() => console.log("counter Mounted"), []);
-
-    // useEffect(() => {
-    //     onCounterUpdate(count);
-    // }, [count]);
-
-    console.log("counterrr re-renderd");
-
+const Counter = ({ onUpdateCounter, label, roomIdx, countValue }) => {
     return (
         <div className="counter d-flex">
             <span className="counter__label">{label}</span>
             <div className="counter__btns">
-                <button className="counter__btn" onClick={handleMinus}>
+                <button
+                    className="counter__btn"
+                    onClick={() => onUpdateCounter(roomIdx, "Minus")}
+                >
                     <i className="fa-solid fa-minus"></i>
                 </button>
-                <span>{count}</span>
-                <button className="counter__btn" onClick={handleAdd}>
+                <span>{`${countValue}`}</span>
+                <button
+                    className="counter__btn"
+                    onClick={() => onUpdateCounter(roomIdx, "Add")}
+                >
                     <i className="fa-solid fa-plus"></i>
                 </button>
             </div>

@@ -1,76 +1,57 @@
-import { useEffect, useState, useRef } from "react";
-// import Age from "./Age";
-// import { v4 as uuidv4 } from "uuid";
+import Age from "./Age";
+import { v4 as uuidv4 } from "uuid";
 import Counter from "./Counter";
 
-const Room = ({ roomNumber, onUpdateRooms, onRemoveRoom, room }) => {
-    const [adults, setAdults] = useState(0);
-    const [children, setChildren] = useState(0);
-    const [isUpdated, setIsUpdated] = useState(false);
-    // const [childrenAges, setChildrenAges] = useState(room.childrenAges);
-    const label = {
+const Room = ({
+    idx,
+    room,
+    onUpdateAdults,
+    onUpdateChildren,
+    onUpdateAges,
+    onRemoveAge,
+    onRemoveRoom,
+}) => {
+    const labels = {
         adults: "Adults",
         children: "Children",
     };
 
-    const onAdultsUpdate = (adults) => {
-        setAdults(adults);
-        setIsUpdated(true);
-    };
-
-    const onChildrenUpdate = (children) => {
-        setChildren(children);
-        setIsUpdated(true);
-    };
-
-    // const onAgesUpdate = (age, idx) => {
-    //     if (!childrenAges.length) {
-    //         setChildrenAges([age]);
-    //     } else {
-    //         const tempAges = [...childrenAges];
-    //         tempAges[idx] = age;
-    //         setChildrenAges([tempAges]);
-    //     }
-    // };
-
-    useEffect(() => setAdults(room.adults), [adults]);
-    useEffect(() => setChildren(room.children), [children]);
-
-    useEffect(() => {
-        isUpdated && onUpdateRooms(adults, children, roomNumber - 1);
-    }, [adults, children]); // eslint-disable-line react-hooks/exhaustive-deps
-
-    console.log("Room re-renderd");
-    // console.log("");
     return (
         <div className="room">
             <div className="room__header">
-                <h2>Room {roomNumber}</h2>
-                {roomNumber !== 1 && (
-                    <button className="room__remove" onClick={onRemoveRoom}>
+                <h2>Room {idx + 1}</h2>
+                {idx > 0 && (
+                    <button
+                        className="room__remove"
+                        onClick={() => onRemoveRoom(idx)}
+                    >
                         <i className="fa-solid fa-trash-can"></i>Remove
                     </button>
                 )}
             </div>
             <Counter
-                countValue={adults}
-                onCounterUpdate={onAdultsUpdate}
-                label={label.adults}
+                countValue={room.adults}
+                label={labels.adults}
+                onUpdateCounter={onUpdateAdults}
+                roomIdx={idx}
             />
             <Counter
-                countValue={children}
-                onCounterUpdate={onChildrenUpdate}
-                label={label.children}
+                countValue={room.children}
+                onUpdateCounter={onUpdateChildren}
+                label={labels.children}
+                roomIdx={idx}
             />
-            {/* {children > 0 &&
-                childrenAges.map((age, idx) => (
+            {room.children > 0 &&
+                room.childrenAges.map((age, ageIdx) => (
                     <Age
                         ageValue={age}
-                        onAgeUpdate={onAgesUpdate}
-                        childNum={idx + 1}
+                        onUpdateAges={onUpdateAges}
+                        onRemoveAge={onRemoveAge}
+                        ageIdx={ageIdx}
+                        roomIdx={idx}
                         key={uuidv4()}
                     />
-                ))} */}
+                ))}
         </div>
     );
 };
