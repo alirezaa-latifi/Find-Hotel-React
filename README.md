@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Find Hotel (TS Version)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It's an assignment for a job interview, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+#### Business requirements :
+- must be able to Add and delete rooms.
+- Inside each room, must be able to specify the number of adults and children.
+- By adding each child, a select box must show up for determining the child's age.
+- Must display the number of guests and rooms on the search button.
+- By pressing the search button, a serialized string must be logged on the console which contains user-entered data.
 
-### `npm start`
+The rules for the output format are the following:
+- Rooms are separated by pipe `|`
+- Adults and children are separated by colon `:`
+- Children ages are separated by comma `,`
+For example `"1:4,6|3"` means Two rooms, one with one adult and two children ages four and six and the other with three adults and no
+children.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Functional Requirements: 
+- Up to eight rooms can be added
+- Each room has at least one adult and up to a maximum of five.
+- Each room has zero or more children up to a maximum of three.
+- Each child needs to have their age supplied, so we know what kind of bed or cot to provide and what to charge for the room.
+- Each room has a maximum occupancy of five. This is, adults plus children per room.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Screenshots
+![find-hotel1](https://user-images.githubusercontent.com/92823582/185799165-b0c10b64-e899-4ef7-8c0b-e9aa49cfd4e2.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Lessons Learned
+I've learned a lot throughout this project, First I started with the wrong approach and got stuck in an infinite loop because of **duplicating data in states of different components**. after studying for a whole day and gaining a better understanding of **component lifecycle**, **re-rendering**, **useState**, and **useEffect**, I eventually improved the approach and finished the project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In the end, I changed JS codes to TS and did my first experience working with **TypeScript**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Demo
+https://alirezaa-latifi.github.io/Find-Hotel-React/
 
-### `npm run eject`
+## Contact Me
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+l.alirezalatifi@gmail.com
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alirezalatifi/)
