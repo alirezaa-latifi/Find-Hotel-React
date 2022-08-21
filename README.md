@@ -34,9 +34,10 @@ children.
 I've learned a lot throughout this project, First I started with the wrong approach and got stuck in an infinite loop because of **duplicating data in states of different components**. after studying for a whole day and gaining a better understanding of **component lifecycle**, **re-rendering**, **useState**, and **useEffect**, I eventually improved the approach and finished the project.
 
 In the end, I changed JS codes to TS and did my first experience working with **TypeScript**.
-## Demo
 
-https://axies-alireza-latifi.netlify.app/
+## Demo
+https://alirezaa-latifi.github.io/Find-Hotel-React/
+
 ## Contact Me
 
 l.alirezalatifi@gmail.com
